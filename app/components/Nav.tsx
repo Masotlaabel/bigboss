@@ -95,7 +95,7 @@ export default function Nav() {
               src={LOGO_BASE64}
               alt="BigBoss Corporate Consulting"
               style={{
-                height: '48px',
+                height: '128px',
                 width: 'auto',
                 objectFit: 'contain',
                 filter: 'drop-shadow(0 0 8px rgba(204,0,0,0.3))',
@@ -268,7 +268,7 @@ export default function Nav() {
             <img
               src={LOGO_BASE64}
               alt="BigBoss"
-              style={{ height: '40px', width: 'auto', objectFit: 'contain' }}
+              style={{ height: '120px', width: 'auto', objectFit: 'contain' }}
             />
           </Link>
           <button

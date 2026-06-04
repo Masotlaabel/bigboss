@@ -7,6 +7,18 @@ function CountUp({ end, suffix = '', duration = 2000 }: { end: number; suffix?: 
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const started = useRef(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+  const checkScreen = () => {
+    setIsMobile(window.innerWidth < 768);
+  };
+
+  checkScreen();
+  window.addEventListener('resize', checkScreen);
+
+  return () => window.removeEventListener('resize', checkScreen);
+}, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
@@ -50,6 +62,17 @@ const theme = {
 
 export default function Home() {
   const sectionsRef = useRef<NodeListOf<Element> | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkScreen();
+    window.addEventListener('resize', checkScreen);
+    return () => window.removeEventListener('resize', checkScreen);
+  }, []);
 
   useEffect(() => {
     sectionsRef.current = document.querySelectorAll('.animate-on-scroll');
@@ -242,14 +265,14 @@ export default function Home() {
 
       {/* VISION + MISSION */}
       <section style={{ background: '#111111', padding: '5rem 2rem' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0', overflow: 'hidden' }}
+        <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '0', overflow: 'hidden' }}
           className="animate-on-scroll">
           {[
             { label: 'Vision', icon: '◈', text: 'An economically empowered Africa where every SADC country thrives through strong businesses, skilled people, and global trade.' },
             { label: 'Mission', icon: '◆', text: 'To partner with companies and governments across SADC, creating jobs, building entrepreneurs, and delivering expertise that drives growth and global competitiveness.' },
           ].map((item, i) => (
             <div key={item.label} style={{
-              padding: '3rem',
+              padding: isMobile ? '2rem' : '3rem',
               background: i === 0 ? '#1A1A1A' : '#0F0F0F',
               borderTop: '3px solid',
               borderColor: i === 0 ? '#CC0000' : '#D4A017',
@@ -269,7 +292,7 @@ export default function Home() {
       {/* ABOUT SNIPPET */}
       <section style={{ padding: '6rem 2rem', background: '#0A0A0A', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', left: '-100px', top: '50%', transform: 'translateY(-50%)', fontFamily: 'Barlow Condensed, sans-serif', fontWeight: 800, fontSize: '18rem', color: 'rgba(255,255,255,0.015)', lineHeight: 1, userSelect: 'none' }}>AFRICA</div>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '5rem', alignItems: 'center', position: 'relative', zIndex: 1 }}
+        <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 2fr', gap: isMobile ? '2rem' : '5rem', alignItems: 'center', position: 'relative', zIndex: 1 }}
           className="animate-on-scroll">
           <div>
             <div className="section-label" style={{ marginBottom: '1rem' }}>Our Genesis</div>
