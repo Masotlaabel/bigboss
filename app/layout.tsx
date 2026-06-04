@@ -7,6 +7,9 @@ import WhatsAppBtn from "./components/WhatsAppBtn";
 export const metadata: Metadata = {
   title: "BigBoss Corporate Consulting | Business Transformation SADC",
   description: "BigBoss Corporate Consulting — partnering with companies and governments across SADC to create jobs, build entrepreneurs, and drive growth and global competitiveness.",
+  icons: {
+    icon: "/icon.png", 
+  },
 };
 
 export default function RootLayout({
