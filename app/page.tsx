@@ -38,6 +38,16 @@ const services = [
   { icon: Zap, title: 'Digital Transformation & IT', desc: 'Programmers, SEO, IT specialists who modernize your business for African realities.', outcomes: ['Digital Systems', 'Automation', 'Growth Online'] },
 ];
 
+const theme = {
+    colorBackground: 'linear-gradient(135deg, #060606 0%, #0c0a0a 50%, #1a0202 100%)',
+    colorGrid: 'rgba(204, 0, 0, 0.04)',
+    colorGlow: 'radial-gradient(circle, rgba(204, 0, 0, 0.15) 0%, transparent 70%)',
+    colorAccent: '#CC0000',
+    colorTextLight: '#F5F5F0',
+    colorTextMuted: '#A0A0A0',
+    colorBorder: 'rgba(255, 255, 255, 0.08)',
+  };
+
 export default function Home() {
   const sectionsRef = useRef<NodeListOf<Element> | null>(null);
 
@@ -56,79 +66,179 @@ export default function Home() {
     <>
       {/* HERO */}
       <section style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        position: 'relative',
-        overflow: 'hidden',
-        background: 'linear-gradient(135deg, #080808 0%, #0A0A0A 40%, #120000 100%)',
-        paddingTop: '72px',
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      position: 'relative',
+      overflow: 'hidden',
+      background: theme.colorBackground,
+      paddingTop: '80px',
+    }}>
+      {/* Background Grid Accent */}
+      <div style={{
+        position: 'absolute', 
+        inset: 0,
+        backgroundImage: `linear-gradient(${theme.colorGrid} 1px, transparent 1px), linear-gradient(90deg, ${theme.colorGrid} 1px, transparent 1px)`,
+        backgroundSize: 'clamp(40px, 5vw, 70px) clamp(40px, 5vw, 70px)',
+        pointerEvents: 'none',
+        zIndex: 0,
+      }} />
+
+      {/* Atmospheric Red Glow */}
+      <div style={{
+        position: 'absolute', 
+        top: '15%', 
+        right: '-5%',
+        width: 'clamp(300px, 50vw, 700px)', 
+        height: 'clamp(300px, 50vw, 700px)',
+        background: theme.colorGlow,
+        pointerEvents: 'none',
+        zIndex: 0,
+        filter: 'blur(40px)',
+      }} />
+
+      {/* Large Decorative Background SADC Text */}
+      <div style={{
+        position: 'absolute', 
+        right: '-1rem', 
+        bottom: '10%',
+        fontFamily: 'Barlow Condensed, sans-serif', 
+        fontWeight: 900,
+        fontSize: 'clamp(120px, 25vw, 320px)',
+        color: 'rgba(204, 0, 0, 0.025)', 
+        letterSpacing: '-0.06em',
+        lineHeight: 1, 
+        userSelect: 'none', 
+        whiteSpace: 'nowrap',
+        zIndex: 0,
       }}>
-        {/* Background grid */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          backgroundImage: `linear-gradient(rgba(204,0,0,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(204,0,0,0.05) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px',
-        }} />
-        {/* Red glow */}
-        <div style={{
-          position: 'absolute', top: '20%', right: '10%',
-          width: '600px', height: '600px',
-          background: 'radial-gradient(circle, rgba(204,0,0,0.12) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }} />
-        {/* SADC outline decorative text */}
-        <div style={{
-          position: 'absolute', right: '-2rem', top: '50%', transform: 'translateY(-50%)',
-          fontFamily: 'Barlow Condensed, sans-serif', fontWeight: 800,
-          fontSize: 'clamp(80px, 20vw, 280px)',
-          color: 'rgba(204,0,0,0.04)', letterSpacing: '-0.05em',
-          lineHeight: 1, userSelect: 'none', whiteSpace: 'nowrap',
-        }}>SADC</div>
+        SADC
+      </div>
 
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '4rem 2rem', position: 'relative', zIndex: 1, width: '100%' }}>
-          <div style={{ maxWidth: '800px' }}>
-            <div className="section-label" style={{ marginBottom: '1.5rem' }}>
-              ◆ BigBoss Corporate Consulting · Multidimensional Solutions
-            </div>
-            <h1 style={{
-              fontFamily: 'Cormorant Garamond, serif',
-              fontSize: 'clamp(3.5rem, 9vw, 8rem)',
-              fontWeight: 300,
-              lineHeight: 0.95,
-              marginBottom: '1.5rem',
-              color: '#F5F5F0',
-            }}>
-              Building<br />
-              <em style={{ fontStyle: 'italic', color: '#CC0000' }}>Africa&apos;s</em><br />
-              <span style={{ fontWeight: 700 }}>Future</span>
-            </h1>
-            <p style={{ fontSize: 'clamp(1rem, 2vw, 1.2rem)', color: '#999999', maxWidth: '520px', lineHeight: 1.8, marginBottom: '2.5rem', fontWeight: 300 }}>
-              We partner with companies and governments across SADC to turn potential into performance — creating jobs, building entrepreneurs, and driving global competitiveness.
-            </p>
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-              <Link href="/partnerships" className="btn-primary">Partner With Us</Link>
-              <Link href="/careers" className="btn-secondary">Join Our Team</Link>
-            </div>
-
-            {/* Quick stats */}
-            <div style={{ display: 'flex', gap: '3rem', marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid #2A2A2A', flexWrap: 'wrap' }}>
-              {[
-                { value: 16, suffix: '', label: 'SADC Countries' },
-                { value: 10000, suffix: '+', label: 'Jobs Goal' },
-                { value: 500, suffix: '+', label: 'Businesses' },
-              ].map(stat => (
-                <div key={stat.label}>
-                  <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2.5rem', fontWeight: 700, color: '#F5F5F0', lineHeight: 1 }}>
-                    <CountUp end={stat.value} suffix={stat.suffix} />
-                  </div>
-                  <div style={{ fontFamily: 'Barlow Condensed, sans-serif', fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#666666', marginTop: '0.3rem' }}>{stat.label}</div>
-                </div>
-              ))}
-            </div>
+      {/* Main Content Container */}
+      <div style={{ 
+        maxWidth: '1440px', 
+        margin: '0 auto', 
+        padding: '3rem max(1.5rem, 5vw)', 
+        position: 'relative', 
+        zIndex: 1, 
+        width: '100%' 
+      }}>
+        <div style={{ maxWidth: '850px' }}>
+          
+          {/* Subtitle Label */}
+          <div className="section-label" style={{ 
+            marginBottom: '2rem',
+            fontFamily: 'Barlow Condensed, sans-serif',
+            fontSize: '0.85rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.2em',
+            color: theme.colorAccent,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            fontWeight: 500
+          }}>
+            <span style={{ fontSize: '0.6rem' }}>◆</span> BigBoss Corporate Consulting · Multidimensional Solutions
           </div>
+
+          {/* Heading */}
+          <h1 style={{
+            fontFamily: 'Cormorant Garamond, serif',
+            fontSize: 'clamp(3.2rem, 8.5vw, 7.5rem)',
+            fontWeight: 300,
+            lineHeight: 1.0,
+            marginBottom: '2rem',
+            color: theme.colorTextLight,
+            letterSpacing: '-0.02em',
+          }}>
+            Building<br />
+            <em style={{ fontStyle: 'italic', color: theme.colorAccent, fontWeight: 400 }}>Africa&apos;s</em><br />
+            <span style={{ fontWeight: 700, letterSpacing: '-0.01em' }}>Future</span>
+          </h1>
+
+          {/* Paragraph Description */}
+          <p style={{ 
+            fontSize: 'clamp(1.05rem, 1.8vw, 1.25rem)', 
+            color: theme.colorTextMuted, 
+            maxWidth: '560px', 
+            lineHeight: 1.7, 
+            marginBottom: '3rem', 
+            fontWeight: 300 
+          }}>
+            We partner with companies and governments across SADC to turn potential into performance — creating jobs, building entrepreneurs, and driving global competitiveness.
+          </p>
+
+          {/* CTA Buttons */}
+          <div style={{ 
+            display: 'flex', 
+            gap: '1.25rem', 
+            flexWrap: 'wrap',
+            marginBottom: '5rem' 
+          }}>
+            <Link href="/partnerships" className="btn-primary" style={{
+              padding: '1rem 2.25rem',
+              fontWeight: 500,
+              letterSpacing: '0.05em',
+              textTransform: 'uppercase',
+              fontSize: '0.85rem'
+            }}>
+              Partner With Us
+            </Link>
+            <Link href="/careers" className="btn-secondary" style={{
+              padding: '1rem 2.25rem',
+              fontWeight: 500,
+              letterSpacing: '0.05em',
+              textTransform: 'uppercase',
+              fontSize: '0.85rem'
+            }}>
+              Join Our Team
+            </Link>
+          </div>
+
+          {/* Quick Stats Grid */}
+          {/* Quick Stats Grid */}
+<div style={{ 
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
+  gap: '2.5rem 1.5rem', 
+  paddingTop: '2.5rem', 
+  borderTop: `1px solid ${theme.colorBorder}`,
+}}>
+  {[
+    { value: 16, suffix: '', label: 'SADC Countries' },
+    { value: 10000, suffix: '+', label: 'Jobs Goal' },
+    { value: 500, suffix: '+', label: 'Businesses Helped' },
+  ].map((stat, idx) => (
+    <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+      <div style={{ 
+        fontFamily: 'Cormorant Garamond, serif', 
+        fontSize: 'clamp(2.5rem, 4vw, 3.25rem)', 
+        fontWeight: 600, 
+        color: theme.colorTextLight, 
+        lineHeight: 1,
+        letterSpacing: '-0.02em'
+      }}>
+        {/* Removed enableScrollSpy to resolve TS(2322) */}
+        <CountUp end={stat.value} suffix={stat.suffix} />
+      </div>
+      <div style={{ 
+        fontFamily: 'Barlow Condensed, sans-serif', 
+        fontSize: '0.75rem', 
+        letterSpacing: '0.15em', 
+        textTransform: 'uppercase', 
+        color: '#777777',
+        fontWeight: 500
+      }}>
+        {stat.label}
+      </div>
+    </div>
+  ))}
+</div>
+
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* VISION + MISSION */}
       <section style={{ background: '#111111', padding: '5rem 2rem' }}>
