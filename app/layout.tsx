@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./digital.css";
+import "./digital-enhancements.css";
+import "./digital-animation.css";
+import "./studios.css";
+import "./studio-refinements.css";
+import "./hero-scenes.css";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import WhatsAppBtn from "./components/WhatsAppBtn";
 
 export const metadata: Metadata = {
-  title: "BigBoss Corporate Consulting | Business Transformation SADC",
+  title: "BigBoss Corporate Consulting | Organisation Transformation Solutions",
   description: "BigBoss Corporate Consulting — partnering with companies and governments across SADC to create jobs, build entrepreneurs, and drive growth and global competitiveness.",
   icons: {
     icon: "/icon.png", 

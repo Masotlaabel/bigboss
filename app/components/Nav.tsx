@@ -8,6 +8,7 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/services', label: 'Services' },
+  { href: '/digital-solutions', label: 'Digital Solutions' },
   { href: '/products', label: 'Products' },
   { href: '/impact', label: 'Impact' },
   { href: '/partnerships', label: 'Partnerships' },
@@ -56,6 +57,7 @@ export default function Nav() {
     <>
       {/* ── Navbar ── */}
       <nav
+        className="bb-site-navigation"
         style={{
           position: 'fixed',
           top: 0,
@@ -110,14 +112,15 @@ export default function Nav() {
           <div
             style={{
               display: 'flex',
-              gap: '2rem',
+              gap: '1.15rem',
               alignItems: 'center',
             }}
-            className="hidden md:flex"
+            className="bb-desktop-links"
           >
             {navLinks.map((link) => (
               <Link
                 key={link.href}
+                className={`bb-nav-link ${pathname === link.href ? "is-active" : ""}`}
                 href={link.href}
                 style={{
                   fontFamily: 'Barlow Condensed, sans-serif',
@@ -199,9 +202,11 @@ export default function Nav() {
               transition: 'all 0.2s ease',
               flexShrink: 0,
             }}
-            className="md:hidden"
+            className="bb-mobile-nav"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
             onMouseEnter={e => {
               e.currentTarget.style.background = 'rgba(204,0,0,0.1)';
               e.currentTarget.style.borderColor = '#CC0000';
@@ -228,13 +233,16 @@ export default function Nav() {
           pointerEvents: menuOpen ? 'auto' : 'none',
           transition: 'opacity 0.35s ease',
         }}
-        className="md:hidden"
+        className="bb-mobile-nav"
         aria-hidden="true"
       />
 
       {/* ── Sidebar ── */}
       <aside
         ref={sidebarRef}
+        id="mobile-navigation"
+        aria-hidden={!menuOpen}
+        inert={!menuOpen}
         style={{
           position: 'fixed',
           top: 0,
@@ -250,7 +258,7 @@ export default function Nav() {
           transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)',
           boxShadow: menuOpen ? '-8px 0 48px rgba(0,0,0,0.7)' : 'none',
         }}
-        className="md:hidden"
+        className="bb-mobile-nav"
       >
         {/* Sidebar header */}
         <div
