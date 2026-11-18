@@ -1,4 +1,5 @@
 'use client';
+import HeroScene from '@/app/components/HeroScene';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Upload } from 'lucide-react';
@@ -30,7 +31,8 @@ export default function Careers() {
   return (
     <>
       {/* HERO */}
-      <section style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', background: 'linear-gradient(135deg, #080808, #000D00)', paddingTop: '72px', position: 'relative', overflow: 'hidden' }}>
+      <section className="bb-corporate-hero bb-hero-careers" style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', background: 'linear-gradient(135deg, #080808, #000D00)', paddingTop: '72px', position: 'relative', overflow: 'hidden' }}>
+        <HeroScene variant="careers"/>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: `linear-gradient(rgba(204,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(204,0,0,0.04) 1px, transparent 1px)`, backgroundSize: '60px 60px' }} />
         <div style={{ position: 'absolute', right: '-50px', bottom: 0, fontFamily: 'Barlow Condensed, sans-serif', fontWeight: 800, fontSize: '14rem', color: 'rgba(204,0,0,0.05)', lineHeight: 1, userSelect: 'none' }}>CAREERS</div>
         <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '4rem 2rem', position: 'relative', zIndex: 1 }}>

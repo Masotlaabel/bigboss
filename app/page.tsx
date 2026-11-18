@@ -1,4 +1,5 @@
 'use client';
+import HeroScene from '@/app/components/HeroScene';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, TrendingUp, Globe, Users, Briefcase, Zap, Shield } from 'lucide-react';
@@ -47,7 +48,7 @@ const services = [
   { icon: Briefcase, title: 'Corporate Strategy & Performance', desc: 'Diagnose gaps, build strategy, implement solutions so companies scale and compete globally.', outcomes: ['Efficiency', 'Profitability', 'Scale'] },
   { icon: Globe, title: 'Trade & Market Access', desc: 'Opening doors for Africa\'s companies into Europe and global markets. From compliance to first shipment.', outcomes: ['New Markets', 'Export Revenue', 'Trade Deals'] },
   { icon: Users, title: 'Leadership & Talent Development', desc: 'We train leaders and teams. BigBoss culture: excellence, discipline, ownership.', outcomes: ['Skilled Teams', 'Future Leaders', 'Ownership Culture'] },
-  { icon: Zap, title: 'Digital Transformation & IT', desc: 'Programmers, SEO, IT specialists who modernize your business for African realities.', outcomes: ['Digital Systems', 'Automation', 'Growth Online'] },
+  { icon: Zap, title: 'Digital Solutions', href: '/digital-solutions', desc: 'Programmers, SEO, IT specialists who modernize your business for African realities.', outcomes: ['Digital Systems', 'Automation', 'Growth Online'] },
 ];
 
 const theme = {
@@ -88,7 +89,7 @@ export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section style={{
+      <section className="bb-corporate-hero bb-hero-home" style={{
       minHeight: '100vh',
       display: 'flex',
       alignItems: 'center',
@@ -97,6 +98,7 @@ export default function Home() {
       background: theme.colorBackground,
       paddingTop: '80px',
     }}>
+        <HeroScene variant="home"/>
       {/* Background Grid Accent */}
       <div style={{
         position: 'absolute', 
@@ -162,7 +164,7 @@ export default function Home() {
             gap: '0.5rem',
             fontWeight: 500
           }}>
-            <span style={{ fontSize: '0.6rem' }}>◆</span> BigBoss Corporate Consulting · Multidimensional Solutions
+            <span style={{ fontSize: '0.6rem' }}>◆</span> BigBoss Corporate Consulting · Organisation Transformation Solutions
           </div>
 
           {/* Heading */}
@@ -338,6 +340,7 @@ export default function Home() {
               }}>
                 <svc.icon size={28} style={{ color: '#CC0000', marginBottom: '1.2rem' }} />
                 <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.4rem', color: '#F5F5F0', marginBottom: '0.8rem', lineHeight: 1.2 }}>{svc.title}</h3>
+                {svc.href ? <Link href={svc.href} style={{ color: '#e64040', fontSize: '.8rem', display: 'inline-block', marginBottom: '.8rem' }}>Explore BigBoss Digital Solutions →</Link> : null}
                 <p style={{ fontSize: '0.9rem', color: '#888888', lineHeight: 1.7, marginBottom: '1.5rem' }}>{svc.desc}</p>
                 <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                   {svc.outcomes.map(o => (
