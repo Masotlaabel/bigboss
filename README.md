@@ -1,81 +1,63 @@
 # BigBoss Corporate Consulting
 
-Original BigBoss corporate website with a rebuilt Digital Solutions template collection integrated at `/digital-solutions`. This package is for local review and GitHub source control. No live deployment has been made.
+The corporate website for BigBoss Corporate Consulting, presenting its organisation transformation services, industry expertise and Digital Solutions capability.
 
-The corporate site retains its original content, dark identity and B/suit logo, with new animated hero artwork and glass navigation. Digital Solutions retains white content areas and the V2 imagery, with seven interactive industry workspaces and two original V2 command-centre templates. Public previews use concise numbered template labels.
+**Organisation Transformation Solutions**
 
-## Run locally on Windows
+- Corporate website: [bigbosscorporate.com](https://www.bigbosscorporate.com/)
+- Source repository: [Masotlaabel/bigboss](https://github.com/Masotlaabel/bigboss)
+- Website update: [BigBoss Website Update](https://github.com/Masotlaabel/bigboss/pull/1)
 
-Install Node.js with npm if it is not already installed. Next.js 16 requires Node.js 20.9 or newer. This package was verified with Node.js 24.14.0 and npm 11.9.0.
+## Website improvements
 
-1. Extract the ZIP to a normal folder, for example `C:\Projects\bigboss-updated`.
-2. Open that extracted folder in VS Code. Open a PowerShell terminal in the folder containing `package.json`.
-3. Run:
+- Digital Solutions is integrated into the BigBoss parent website at `/digital-solutions`.
+- Existing corporate pages, brand identity and imagery are retained.
+- The corporate tagline is updated to “Organisation Transformation Solutions”.
+- Digital Solutions prices and subscriptions are reduced by 50% against the original schedule.
+- Seven interactive industry workspaces support distinct analysis tasks, alongside two original dashboard previews.
+- Glass navigation, animated hero scenes and responsive interactions include support for reduced-motion preferences.
 
-```powershell
-npm.cmd ci
-npm.cmd run dev
-```
+## Review the source and designs
 
-Open [http://localhost:3000](http://localhost:3000), then choose **Digital Solutions** in the navigation. Open [http://localhost:3000/digital-solutions](http://localhost:3000/digital-solutions) directly to review the updated page. Stop the server with **Ctrl+C**.
+The website update has been merged into the repository's `main` branch. That confirms the source is available on GitHub; the version served by the public domain depends on the hosting project's production deployment.
 
-You can also double-click `RUN_LOCAL.bat`. It installs dependencies on the first run, then starts the local preview. `npm.cmd` avoids Windows PowerShell execution-policy restrictions on `npm.ps1`.
+- [Digital Solutions page](app/digital-solutions/page.tsx)
+- [Interactive dashboard collection](app/components/DashboardStudio.tsx)
+- [Website and dashboard previews](previews/)
+- [Change notes and pricing comparison](CHANGE_NOTES.md)
+- [Build and browser verification](VERIFICATION.md)
+- [Animation guide](ANIMATION_GUIDE.md)
+- [Asset credits](ASSET_CREDITS.md)
 
-If port 3000 is already in use:
+## Publishing through the existing hosting project
 
-```powershell
-npm.cmd run dev -- --port 3001
-```
+The website owner should check the Vercel project currently assigned to `bigbosscorporate.com` and `www.bigbosscorporate.com`:
 
-Then open [http://localhost:3001](http://localhost:3001). On macOS/Linux, use `npm` in place of `npm.cmd`.
+1. Under **Settings → Git**, confirm that the connected repository is `Masotlaabel/bigboss`.
+2. Confirm that the production branch is `main`.
+3. Under **Deployments**, check that a successful production deployment uses the current `main` commit. If it does not, inspect the Git integration and any build errors before publishing through the owner's existing release process.
+4. After publishing, verify the updated tagline and `/digital-solutions` on the public domain.
 
-## Verify the production build
+The application uses Next.js. The application root is the repository root, containing `package.json`; the build command is `npm run build`. The current `vercel.json` excludes the named review branches from automatic Git deployments. It does not exclude `main`.
 
-```powershell
-npm.cmd run test:pricing
-npm.cmd run typecheck
-npm.cmd run build
-npm.cmd start
-```
+The GitHub repository, Vercel project and domain can be administered by different accounts. Access to this repository alone does not provide access to the live hosting project. Keep the existing project and domain configuration when publishing an update to that project.
 
-`build` and `dev` use Webpack for compatibility with the supplied V2 setup. `start` serves the built application locally; it does not publish the website.
+## Digital enquiry delivery
 
-`typecheck` generates Next.js route types first, so it also works from a freshly extracted source package before the first build.
+Configure `BIGBOSS_ENQUIRY_WEBHOOK_URL` in the hosting environment to receive enquiries from the Digital Solutions form. The endpoint must accept JSON POST requests. Without it, the form reports that delivery is unavailable and offers BigBoss email and WhatsApp links. Store credentials in environment settings, outside the repository.
 
-## Optional digital enquiry delivery
+## Development and maintenance
 
-The new digital form needs a configured JSON webhook to deliver online enquiries. Without it, the form reports that delivery is unavailable and offers BigBoss email and WhatsApp links.
+Optional installation, local preview, build checks and environment setup are documented in the [Developer Guide](docs/DEVELOPMENT.md). Visitors to the public website do not need to install or run this project.
 
-```powershell
-Copy-Item .env.example .env.local
-```
+| Area | Source |
+| --- | --- |
+| Corporate pages and navigation | `app/`, `app/components/Nav.tsx`, `app/components/Footer.tsx` |
+| Digital Solutions content | `app/digital-solutions/page.tsx`, `app/data/digital.ts` |
+| Digital pricing and subscriptions | `app/data/digitalPricing.ts` |
+| Dashboard layouts and interactions | `app/components/DashboardStudio.tsx`, `app/components/StudioViews.tsx`, `app/components/StudioPrimitives.tsx` |
+| Hero artwork and motion | `app/components/HeroScene.tsx`, `app/hero-scenes.css` |
+| Enquiry endpoint | `app/api/enquiry/route.ts` |
+| Brand and visual assets | `public/` |
 
-Set `BIGBOSS_ENQUIRY_WEBHOOK_URL` in `.env.local` to your approved receiver and restart the server. The endpoint receives a POST containing `name`, `email`, `organisation`, `country`, `budget`, `start`, `details`, `service`, `source` and `receivedAt`. Do not commit `.env.local` or credentials. The original corporate Contact page is preserved separately.
-
-## GitHub-ready contents
-
-Upload the contents of the extracted `bigboss-updated` folder so `package.json` is at the repository root. Keep `package-lock.json`, `.gitignore`, `.env.example`, `app`, `public` and the configuration files. The ZIP excludes `node_modules`, `.next`, `.vercel`, Git history and secrets.
-
-No Vercel project link or automatic deployment workflow is included. If an existing GitHub repository is already connected to a hosting service, pushing there may trigger its existing deployment settings; use a local checkout or an unconnected review repository while this remains a review-only update.
-
-## Where to edit
-
-- `app/data/digitalPricing.ts`: one numeric source for service prices, support plans and estimator calculations.
-- `app/data/digital.ts`: digital service descriptions and plan features.
-- `app/digital-solutions/page.tsx`: Digital Solutions content and enterprise delivery approach.
-- `app/components/DashboardStudio.tsx`: template selection, application shell, filters, search, inspection and CSV export.
-- `app/components/StudioViews.tsx` and `StudioPrimitives.tsx`: seven industry layouts and reusable visual components.
-- `app/components/V2DashboardGallery.tsx`: two original V2 previews, full-size viewing and zoom.
-- `app/data/studios.ts`: template definitions and preview metric baselines.
-- `app/components/HeroScene.tsx`: procedural 3D geometry, pointer depth and glass hero panels.
-- `app/studios.css`, `studio-refinements.css` and `hero-scenes.css`: workspace design, readable typography, glass navigation and hero styling.
-- `app/components/DigitalArchitecture.tsx`: interactive example architecture pathways.
-- `app/components/DigitalMotion.tsx`: progressive scroll reveals and reading progress, with reduced-motion support.
-- `app/digital.css`, `app/digital-enhancements.css` and `app/digital-animation.css`: isolated Digital Solutions styling, animations and responsive navigation fixes.
-- Original corporate page content and `app/globals.css`: retained from `bigboss-main`; marketing page heroes now include `HeroScene`.
-
-Dashboard values are synthetic demonstrations. AI and GPU content describes an engagement approach subject to discovery; no NVIDIA affiliation or owned compute infrastructure is claimed.
-
-See [ANIMATION_GUIDE.md](ANIMATION_GUIDE.md) for the exact old/new motion treatments, and [ASSET_CREDITS.md](ASSET_CREDITS.md) for reference and map-data notes.
-
-See [CHANGE_NOTES.md](CHANGE_NOTES.md) for exact changes and before/after prices, and [VERIFICATION.md](VERIFICATION.md) for validation evidence and limits.
+Dashboard examples are front-end templates using demonstration data. Production data connections and AI or GPU services require their own implementation and infrastructure.

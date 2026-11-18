@@ -2,7 +2,8 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "git": {
     "deploymentEnabled": {
-      "review/bigboss-r2-v1.2.0": false
+      "review/bigboss-r2-v1.2.0": false,
+      "review/website-documentation": false
     }
   }
 }
